@@ -17,21 +17,12 @@ class Twitter {
 		$connection = new TwitterOAuth($consumer_key, $consumer_secret, $oauth_token, $oauth_token_secret);
 
 		$query = "https://api.twitter.com/1.1/search/tweets.json?q=" . urlencode( $search ) . "&lang=fr&rpp=$rpp&include_entities=true";
-		//$query = 'https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=NOE_interactive&count=1'; //Your Twitter API query
 		$content = $connection->get($query);
+
 		print_r($content);
 		exit;
 
-
-		$curl = curl_init();
-		curl_setopt( $curl, CURLOPT_URL, $url );
-		curl_setopt( $curl, CURLOPT_RETURNTRANSFER, 1 );
-		$result = curl_exec( $curl );
-		curl_close( $curl );
-
-		$results_objects = json_decode($result);
-
-		if(!empty($results_objects->results)){
+		if(!empty($content->results)){
 
 			//$this->searchResults($search, $rpp + 50);
 		}
@@ -46,4 +37,4 @@ class Twitter {
 
 echo "<pre>";
 $twitter = new Twitter();
-echo $twitter->searchResults("charlielefilm");
+echo $twitter->searchResults("charlielefilmss");
