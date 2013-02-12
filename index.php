@@ -31,8 +31,8 @@ class Twitter {
 					}
 				}
 			}
-
-			$this->searchResults("charlielefilm", $rpp + 50);
+			$new_rpp = $rpp + 50;
+			$this->searchResults("charlielefilm", $new_rpp);
 		}else{
 			return $this->results;
 		}
