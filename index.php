@@ -16,7 +16,7 @@ class Twitter {
 
 		$connection = new TwitterOAuth($consumer_key, $consumer_secret, $oauth_token, $oauth_token_secret);
 
-		$query = "https://api.twitter.com/1.1/search/tweets.json?q=" . urlencode( $search ) . "&lang=fr&rpp=$rpp&include_entities=true";
+		$query = "https://api.twitter.com/1.1/search/tweets.json?q=" . urlencode( $search ) . "&rpp=$rpp&include_entities=true";
 		$content = $connection->get($query);
 
 		print_r($content);
