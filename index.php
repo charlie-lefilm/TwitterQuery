@@ -32,6 +32,7 @@ class Twitter {
 				}
 			}
 			$new_rpp = $rpp + 50;
+			exit;
 			$this->searchResults("charlielefilm", $new_rpp);
 		}else{
 			return $this->results;
@@ -45,5 +46,5 @@ if(!empty($_GET["debug"])){
 	echo "<pre>";
 	echo $twitter->searchResults("charlielefilm");
 }else{
-	echo json_encode($twitter->searchResults("charlielefilm"));
+	echo json_encode($twitter->searchResults("charlielazzzzefilm"));
 }
