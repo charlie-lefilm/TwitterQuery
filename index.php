@@ -5,7 +5,7 @@ class Twitter {
 
 	protected  $results = array();
 
-	public function searchResults( $search = null, $rpp = 50 ) {
+	public function searchResults( $search = null, &$rpp = 50 ) {
 
 		require_once('twitteroauth/twitteroauth/twitteroauth.php');
 
@@ -32,16 +32,13 @@ class Twitter {
 				}
 			}
 
-		print_r($this->results);
-		exit;
+			print_r($this->results);
+			exit;
+
+		$this->searchResults("charlielefilm", $rpp + 50);
 		}else{
-
+			return $this->results;
 		}
-
-							print_r($results_objects);
-		exit;
-
-		return $return;
 	}
 
 }
