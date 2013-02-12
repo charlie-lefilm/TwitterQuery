@@ -36,7 +36,7 @@ class Twitter {
 						}
 					}
 				}
-				$memcache_obj->add('tweet_charlie', serialize($this->results), false, 2592000);
+				$memcache_obj->add('tweet_charlie', serialize($this->results), false, 3600);
 			}
 		}
 
