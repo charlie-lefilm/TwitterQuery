@@ -5,7 +5,7 @@ class Twitter {
 
 	protected  $results = array();
 
-	public function searchResults( $search = null, &$rpp = 50 ) {
+	public function searchResults( $search = null, $rpp = 50 ) {
 
 		require_once('twitteroauth/twitteroauth/twitteroauth.php');
 
@@ -31,9 +31,8 @@ class Twitter {
 					}
 				}
 			}
-			$new_rpp = $rpp + 50;
 			exit;
-			$this->searchResults("charlielefilm", $new_rpp);
+			$this->searchResults("charlielefilm", $rpp + 50);
 		}else{
 			return $this->results;
 		}
@@ -46,5 +45,5 @@ if(!empty($_GET["debug"])){
 	echo "<pre>";
 	echo $twitter->searchResults("charlielefilm");
 }else{
-	echo json_encode($twitter->searchResults("charlielazzzzefilm"));
+	echo json_encode($twitter->searchResults("charlielefilm"));
 }
