@@ -19,6 +19,8 @@ class Twitter {
 		$query = "https://api.twitter.com/1.1/search/tweets.json?q=" . urlencode( $search ) . "&rpp=$rpp&include_entities=true";
 		$content = $connection->get($query);
 
+		print_r($content);
+		exit;
 
 		if(!empty($content->statuses)){
 
