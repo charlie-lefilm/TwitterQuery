@@ -19,7 +19,7 @@ class Twitter {
 		$content = $connection->get($query);
 
 		$memcache_obj = new Memcache;
-		$memcache_obj->connect('memcache_host', 11211);
+		$memcache_obj->connect('localhost', 11211);
 
 		#$memcache_obj->delete('tweet_charlie');
 
