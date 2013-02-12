@@ -3,7 +3,7 @@
 
 class Twitter {
 
-	protected  $results;
+	protected  $results = array();
 
 	public function searchResults( $search = null, $rpp = 50 ) {
 
@@ -19,12 +19,21 @@ class Twitter {
 		$query = "https://api.twitter.com/1.1/search/tweets.json?q=" . urlencode( $search ) . "&rpp=$rpp&include_entities=true";
 		$content = $connection->get($query);
 
-		print_r($content);
-		exit;
 
 		if(!empty($content->statuses)){
 
-			//$this->searchResults($search, $rpp + 50);
+			foreach ($content->statuses as $key_tweet => $value_tweet) {
+				if(!empty($value_tweet->entities->media)){
+					foreach ($value_tweet->entities->media as $key_media => $value_media) {
+						if(!empty($value_media->media_url)){
+								$this->results[] = $value_media->media_url;
+						}
+					}
+				}
+			}
+
+		print_r($this->results);
+		exit;
 		}else{
 
 		}
