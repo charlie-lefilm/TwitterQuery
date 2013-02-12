@@ -37,4 +37,4 @@ class Twitter {
 
 echo "<pre>";
 $twitter = new Twitter();
-echo $twitter->searchResults("charlielefilmss");
+echo $twitter->searchResults("charlielefaa");
