@@ -32,10 +32,7 @@ class Twitter {
 				}
 			}
 
-			print_r($this->results);
-			exit;
-
-		$this->searchResults("charlielefilm", $rpp + 50);
+			$this->searchResults("charlielefilm", $rpp + 50);
 		}else{
 			return $this->results;
 		}
@@ -43,6 +40,10 @@ class Twitter {
 
 }
 
-echo "<pre>";
 $twitter = new Twitter();
-echo $twitter->searchResults("charlielefilm");
+if(!empty($_GET["debug"])){
+	echo "<pre>";
+	echo $twitter->searchResults("charlielefilm");
+}else{
+	echo json_encode($twitter->searchResults("charlielefilm"));
+}
