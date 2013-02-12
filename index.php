@@ -22,9 +22,11 @@ class Twitter {
 		print_r($content);
 		exit;
 
-		if(!empty($content->results)){
+		if(!empty($content->statuses)){
 
 			//$this->searchResults($search, $rpp + 50);
+		}else{
+
 		}
 
 							print_r($results_objects);
@@ -37,4 +39,4 @@ class Twitter {
 
 echo "<pre>";
 $twitter = new Twitter();
-echo $twitter->searchResults("charlielefaa");
+echo $twitter->searchResults("charlielefilm");
