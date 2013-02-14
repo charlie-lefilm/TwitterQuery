@@ -6,7 +6,7 @@ class Twitter {
 
 
 	protected  $results = array();
-	public function searchResults( $search = null, $rpp = 200 ) {
+	public function searchResults( $search = null, $count = 100 ) {
 
 		require_once('twitteroauth/twitteroauth/twitteroauth.php');
 
@@ -16,7 +16,7 @@ class Twitter {
 		$oauth_token_secret = '7PKqQ5qdRe9ZfeV9EyS7VdiDQF0k9aHu1DUwmWxgK4';
 
 		$connection = new TwitterOAuth($consumer_key, $consumer_secret, $oauth_token, $oauth_token_secret);
-		$query = "https://api.twitter.com/1.1/search/tweets.json?q=" . urlencode( $search ) . "&count=$rpp&include_entities=true";
+		$query = "https://api.twitter.com/1.1/search/tweets.json?q=" . urlencode( $search ) . "&count=$count&include_entities=true";
 		$content = $connection->get($query);
 
 		$memcache_obj = new Memcache();
