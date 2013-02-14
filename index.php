@@ -19,12 +19,12 @@ class Twitter {
 		$query = "https://api.twitter.com/1.1/search/tweets.json?q=" . urlencode( $search ) . "&rpp=$rpp&include_entities=true";
 		$content = $connection->get($query);
 
-		#$memcache_obj = new Memcache();
-		#$memcache_obj->connect('localhost', 11211);
+		$memcache_obj = new Memcache();
+		$memcache_obj->connect('localhost', 11211);
 
-#		if($data = $memcache_obj->get('tweet_charlie')){
-#			$this->results = unserialize($memcache_obj->get('tweet_charlie'));
-#		}else{
+		if($data = $memcache_obj->get('tweet_charlie')){
+			$this->results = unserialize($memcache_obj->get('tweet_charlie'));
+		}else{
 			if(!empty($content->statuses)){
 				foreach ($content->statuses as $key_tweet => $value_tweet) {
 
@@ -37,13 +37,10 @@ class Twitter {
 						}
 					}
 				}
-				#$memcache_obj->add('tweet_charlie', serialize($this->results), false, 300);
+				$memcache_obj->add('tweet_charlie', serialize($this->results), false, 300);
 			}
-#		}
+		}
 
-			echo "<pre>";
-			print_r($this->results);
-			exit;
 		return $this->results;
 	}
 
