@@ -22,8 +22,6 @@ class Twitter {
 		$memcache_obj = new Memcache();
 		$memcache_obj->connect('localhost', 11211);
 
-		$memcache_obj->delete('tweet_charlie');
-		
 		if($data = $memcache_obj->get('tweet_charlie')){
 			$this->results = unserialize($memcache_obj->get('tweet_charlie'));
 		}else{
