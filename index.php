@@ -1,5 +1,6 @@
-<?php
+<?php header('Access-Control-Allow-Origin: *'); ?>
 
+<?php
 
 class Twitter {
 
