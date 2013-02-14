@@ -4,8 +4,8 @@
 
 class Twitter {
 
-	protected  $results = array();
 
+	protected  $results = array();
 	public function searchResults( $search = null, $rpp = 100 ) {
 
 		require_once('twitteroauth/twitteroauth/twitteroauth.php');
@@ -19,12 +19,14 @@ class Twitter {
 		$query = "https://api.twitter.com/1.1/search/tweets.json?q=" . urlencode( $search ) . "&rpp=$rpp&include_entities=true";
 		$content = $connection->get($query);
 
-		$memcache_obj = new Memcache();
-		$memcache_obj->connect('localhost', 11211);
+		#$memcache_obj = new Memcache();
+		#$memcache_obj->connect('localhost', 11211);
 
-		if($data = $memcache_obj->get('tweet_charlie')){
-			$this->results = unserialize($memcache_obj->get('tweet_charlie'));
-		}else{
+#		if($data = $memcache_obj->get('tweet_charlie')){
+#			$this->results = unserialize($memcache_obj->get('tweet_charlie'));
+#		}else{
+			print_r($content->statuses);
+			exit;
 			if(!empty($content->statuses)){
 				foreach ($content->statuses as $key_tweet => $value_tweet) {
 					if(!empty($value_tweet->entities->media)){
@@ -34,10 +36,10 @@ class Twitter {
 							}
 						}
 					}
-				}
-				$memcache_obj->add('tweet_charlie', serialize($this->results), false, 300);
+				}	
+				#$memcache_obj->add('tweet_charlie', serialize($this->results), false, 300);
 			}
-		}
+#		}
 
 		return $this->results;
 	}
