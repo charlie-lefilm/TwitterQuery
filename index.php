@@ -25,6 +25,7 @@ class Twitter {
 #		if($data = $memcache_obj->get('tweet_charlie')){
 #			$this->results = unserialize($memcache_obj->get('tweet_charlie'));
 #		}else{
+			echo "<pre>";
 			print_r($content->statuses);
 			exit;
 			if(!empty($content->statuses)){
