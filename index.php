@@ -25,23 +25,25 @@ class Twitter {
 #		if($data = $memcache_obj->get('tweet_charlie')){
 #			$this->results = unserialize($memcache_obj->get('tweet_charlie'));
 #		}else{
-			echo "<pre>";
-			print_r($content->statuses);
-			exit;
 			if(!empty($content->statuses)){
 				foreach ($content->statuses as $key_tweet => $value_tweet) {
+
 					if(!empty($value_tweet->entities->media)){
 						foreach ($value_tweet->entities->media as $key_media => $value_media) {
 							if(!empty($value_media->media_url)){
-									$this->results[] = $value_media->media_url;
+									$this->results[$key_tweet]["id"] = $value_tweet->id;
+									$this->results[$key_tweet]["image"] = $value_media->media_url;
 							}
 						}
 					}
-				}	
+				}
 				#$memcache_obj->add('tweet_charlie', serialize($this->results), false, 300);
 			}
 #		}
 
+			echo "<pre>";
+			print_r($this->results);
+			exit;
 		return $this->results;
 	}
 
